@@ -3,6 +3,21 @@
 Ubuntu 26.04 is the supported Linux build and runtime target. The converter needs
 no GPU, GPU driver, live capture privileges or Hashcat installation.
 
+## Pipe into WiFi GPU
+
+With the converter and WiFi GPU 0.17.0 or newer on PATH:
+
+```sh
+set -o pipefail
+wifi-cap2hashcat capture.pcapng |
+  wifi-gpu recover --hashes - --cpu --wordlist words.txt --output results.json
+```
+
+On a host with a working GPU runtime, select its backend instead of `--cpu`.
+See [the pipeline guide](pipeline.md) for NVIDIA OpenCL/Vulkan examples, a
+synthetic walkthrough and checkpoint/resume. WiFi GPU versions before 0.17.0 do
+not include stdin support.
+
 ## Native build
 
 Install the compiler/linker prerequisites and Rust toolchain manager from Ubuntu:

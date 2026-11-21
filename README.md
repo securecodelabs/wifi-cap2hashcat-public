@@ -2,13 +2,28 @@
 
 Offline Rust CLI and library for converting supported WPA2-PSK authentication captures to Hashcat mode 22000 (`WPA*02` EAPOL records). This tool converts existing files; it does not capture traffic or recover passwords.
 
-Version **0.2.5** reads embedded FZ WiFi metadata from PCAPNG and includes it in
+Version **0.2.6** documents direct pipelines into WiFi GPU 0.17.0 or newer.
+The converter reads embedded FZ WiFi metadata from PCAPNG and includes it in
 conversion reports under `embedded_metadata`, with section identity. The original
 packet evidence alone determines SSIDs, profiles and usable pairs. Embedded
 `mic_verified`, selected SSID and validation claims never establish validity.
 Malformed, duplicated, oversized or inconsistent recognized metadata fails the
 conversion; ordinary third-party PCAPNG without this metadata remains supported.
 Existing PCAP inputs and optional JSON sidecars continue to work.
+
+## Pipe into WiFi GPU
+
+With both executables on PATH, send the converted hashes directly to WiFi GPU:
+
+```sh
+wifi-cap2hashcat capture.pcapng | wifi-gpu recover --hashes - --backend opencl --wordlist words.txt
+```
+
+The converter writes HC22000 records to stdout; WiFi GPU reads stdin and checks
+the candidates. No intermediate hash file is needed. This requires WiFi GPU
+**0.17.0 or newer**, which adds `--hashes -`.
+See [Windows, Linux and synthetic pipeline examples](docs/pipeline.md) for Vulkan,
+CPU recovery, reports and session resume.
 
 ## Build and use on Windows
 

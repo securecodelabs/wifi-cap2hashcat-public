@@ -10,6 +10,7 @@
     "share/wifi-cap2hashcat/third_party/rust/COPYRIGHT.html": "third_party/rust/COPYRIGHT.html",
     "share/wifi-cap2hashcat/tests/fixtures/README.md": "tests/fixtures/README.md",
     "share/wifi-cap2hashcat/docs/linux.md": "docs/linux.md",
+    "share/wifi-cap2hashcat/docs/pipeline.md": "docs/pipeline.md",
     "share/wifi-cap2hashcat/CONTRIBUTING.md": "CONTRIBUTING.md",
     "share/wifi-cap2hashcat/SECURITY.md": "SECURITY.md"
   }
