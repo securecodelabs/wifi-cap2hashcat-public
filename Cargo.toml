@@ -19,7 +19,7 @@ tempfile = "3"
 
 [dev-dependencies]
 hmac = "0.12"
-pbkdf2 = "0.12"
+pbkdf2 = "0.13"
 sha1 = "0.10"
 
 [lints.rust]
