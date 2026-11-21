@@ -1,0 +1,16 @@
+**
+!Dockerfile
+!Cargo.toml
+!Cargo.lock
+!src/
+!src/**
+!tests/
+!tests/**
+!LICENSE
+!NOTICE
+!THIRD_PARTY_NOTICES.md
+!third_party/
+!third_party/rust/
+!third_party/rust/**
+**/__pycache__
+**/*.pyc

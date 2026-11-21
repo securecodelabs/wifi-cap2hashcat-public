@@ -1,0 +1,16 @@
+{
+  "project": "wifi-cap2hashcat",
+  "files": {
+    "share/wifi-cap2hashcat/README.md": "README.md",
+    "share/wifi-cap2hashcat/Cargo.lock": "Cargo.lock",
+    "share/wifi-cap2hashcat/LICENSE": "LICENSE",
+    "share/wifi-cap2hashcat/NOTICE": "NOTICE",
+    "share/wifi-cap2hashcat/THIRD_PARTY_NOTICES.md": "THIRD_PARTY_NOTICES.md",
+    "share/wifi-cap2hashcat/third_party/rust/CRATE_LICENSES.txt": "third_party/rust/CRATE_LICENSES.txt",
+    "share/wifi-cap2hashcat/third_party/rust/COPYRIGHT.html": "third_party/rust/COPYRIGHT.html",
+    "share/wifi-cap2hashcat/tests/fixtures/README.md": "tests/fixtures/README.md",
+    "share/wifi-cap2hashcat/docs/linux.md": "docs/linux.md",
+    "share/wifi-cap2hashcat/CONTRIBUTING.md": "CONTRIBUTING.md",
+    "share/wifi-cap2hashcat/SECURITY.md": "SECURITY.md"
+  }
+}

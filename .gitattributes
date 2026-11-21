@@ -1,0 +1,11 @@
+* text=auto
+
+*.sh text eol=lf
+*.py text eol=lf
+*.yaml text eol=lf
+Dockerfile* text eol=lf
+
+*.yml text eol=lf
+
+# Preserve the upstream toolchain notice verbatim, including its whitespace.
+third_party/rust/COPYRIGHT.html -text -diff

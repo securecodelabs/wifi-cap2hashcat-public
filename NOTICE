@@ -1,0 +1,6 @@
+wifi-cap2hashcat
+Copyright 2026 securecodelabs contributors
+
+Original project code is licensed under the Apache License, Version 2.0.
+Rust dependencies and the public Hashcat test vector retain their upstream
+licenses and attribution. See THIRD_PARTY_NOTICES.md.

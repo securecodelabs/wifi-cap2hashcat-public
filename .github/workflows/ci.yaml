@@ -1,0 +1,63 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        default: ''
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}-${{ inputs.ref }}
+  cancel-in-progress: true
+jobs:
+  security:
+    name: Security
+    uses: ./.github/workflows/security.yaml # zizmor: ignore[self-repository] -- Same-commit reusable workflow; actionlint 1.7.12 does not support $/ yet.
+    with:
+      ref: ${{ inputs.ref || github.ref }}
+  test:
+    name: Test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-26.04
+            runner: ubuntu-26.04
+          - os: windows
+            runner: windows-2022
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Pinned Rust toolchain
+        run: rustup toolchain install 1.90.0 --profile minimal --component rustfmt --component clippy
+      - name: Formatting
+        run: cargo +1.90.0 fmt --all -- --check
+      - name: Clippy
+        run: cargo +1.90.0 clippy --locked --all-targets -- -D warnings
+      - name: Unit, malformed-input and integration tests
+        run: cargo +1.90.0 test --locked --all-targets
+      - name: Release packaging tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Locked dependency license notices
+        run: |
+          cargo +1.90.0 fetch --locked
+          python scripts/dependency-licenses.py --check
+      - name: Release build
+        run: cargo +1.90.0 build --release --locked
+      - name: Ubuntu 26.04 container build and runtime smoke test
+        if: runner.os == 'Linux'
+        run: |
+          docker build -t wifi-cap2hashcat:ci .
+          python scripts/test-container.py --image wifi-cap2hashcat:ci
