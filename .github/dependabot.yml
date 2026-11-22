@@ -15,6 +15,13 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    groups:
+      # These test dependencies share the digest API and must move together.
+      rustcrypto-tests:
+        patterns:
+          - hmac
+          - pbkdf2
+          - sha1
   - package-ecosystem: docker
     directory: /
     schedule:

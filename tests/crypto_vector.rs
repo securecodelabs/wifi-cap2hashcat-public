@@ -1,6 +1,6 @@
 mod common;
 use common::*;
-use hmac::{Hmac, Mac};
+use hmac::{Hmac, KeyInit, Mac};
 use pbkdf2::pbkdf2_hmac;
 use sha1::Sha1;
 use wifi_cap2hashcat::{Config, convert};

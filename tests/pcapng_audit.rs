@@ -72,7 +72,7 @@ fn simple_packet_source_bytes_are_accounted() {
         let packet = radio(&beacon(SSID), 0, false);
         let mut body = e.u32(packet.len() as u32).to_vec();
         body.extend(&packet);
-        while body.len() % 4 != 0 {
+        while !body.len().is_multiple_of(4) {
             body.push(0);
         }
         capture.extend(block(3, &body, e));

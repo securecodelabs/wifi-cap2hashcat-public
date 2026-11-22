@@ -418,7 +418,7 @@ fn simple_packets_can_supply_ssid_but_not_handshake_timestamps() {
     for f in [beacon(SSID), frame(1), frame(2)] {
         let mut body = e.u32(f.len() as u32).to_vec();
         body.extend(f);
-        while body.len() % 4 != 0 {
+        while !body.len().is_multiple_of(4) {
             body.push(0);
         }
         b.extend(block(3, &body, e));
