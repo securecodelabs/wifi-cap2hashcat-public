@@ -30,7 +30,7 @@ CPU recovery, reports and session resume.
 Ubuntu 26.04 binaries and WSL/Docker images are also supported. See
 [Linux setup](docs/linux.md) for native builds and synthetic container validation.
 
-Requires Rust 1.85 or newer and the Windows linker/build tools. From this directory:
+Requires Rust 1.87 or newer and the Windows linker/build tools. From this directory:
 
 ```powershell
 cargo build --release --locked

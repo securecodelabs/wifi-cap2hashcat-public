@@ -200,7 +200,7 @@ fn decode_ng<'a>(
         let kind = endian.u32(rest);
         let size = endian.u32(&rest[4..]) as usize;
         ensure!(
-            size >= 12 && size % 4 == 0 && size <= rest.len(),
+            size >= 12 && size.is_multiple_of(4) && size <= rest.len(),
             "Invalid PCAPNG block length at byte {pos}"
         );
         if !shb {

@@ -73,7 +73,7 @@ pub fn data_frame(
         b.extend([0; 4]);
     }
     if pad {
-        while b.len() % 4 != 0 {
+        while !b.len().is_multiple_of(4) {
             b.push(0);
         }
     }
@@ -166,7 +166,7 @@ pub fn option(code: u16, value: &[u8], e: E) -> Vec<u8> {
     let mut b = e.u16(code).to_vec();
     b.extend(e.u16(value.len() as u16));
     b.extend(value);
-    while b.len() % 4 != 0 {
+    while !b.len().is_multiple_of(4) {
         b.push(0);
     }
     b
@@ -197,7 +197,7 @@ pub fn epb(id: u32, ticks: u64, frame: &[u8], e: E) -> Vec<u8> {
     body.extend(e.u32(frame.len() as u32));
     body.extend(e.u32(frame.len() as u32));
     body.extend(frame);
-    while body.len() % 4 != 0 {
+    while !body.len().is_multiple_of(4) {
         body.push(0);
     }
     block(6, &body, e)

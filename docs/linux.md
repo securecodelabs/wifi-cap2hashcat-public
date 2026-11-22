@@ -31,7 +31,7 @@ cargo +1.90.0 build --locked --release
 ./target/release/wifi-cap2hashcat --help
 ```
 
-Rust 1.85 is the declared minimum; release builds and CI use Rust 1.90.0.
+Rust 1.87 is the declared minimum; release builds and CI use Rust 1.90.0.
 Linux binaries built on Ubuntu 26.04 may require its glibc version and are not
 promised to run on older distributions. Use the container on other Linux hosts.
 
