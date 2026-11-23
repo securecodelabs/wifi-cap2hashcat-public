@@ -2,7 +2,10 @@
 
 Offline Rust CLI and library for converting supported WPA2-PSK authentication captures to Hashcat mode 22000 (`WPA*02` EAPOL records). This tool converts existing files; it does not capture traffic or recover passwords.
 
-Version **0.2.6** documents direct pipelines into WiFi GPU 0.17.0 or newer.
+Version **0.2.7** updates dependencies, build tools, and the Ubuntu 26.04
+container base. Source builds now require Rust 1.87 or newer; release binaries
+are built with Rust 1.90.0. Direct pipelines into WiFi GPU 0.17.0 or newer
+remain supported.
 The converter reads embedded FZ WiFi metadata from PCAPNG and includes it in
 conversion reports under `embedded_metadata`, with section identity. The original
 packet evidence alone determines SSIDs, profiles and usable pairs. Embedded
