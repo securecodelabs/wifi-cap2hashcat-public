@@ -1,4 +1,4 @@
-zizmor==1.32.0
+zizmor==1.33.1
 ruff==0.17.6
 bandit==1.9.4
 pip-audit==2.10.1
