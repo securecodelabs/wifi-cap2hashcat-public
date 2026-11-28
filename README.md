@@ -14,6 +14,21 @@ Malformed, duplicated, oversized or inconsistent recognized metadata fails the
 conversion; ordinary third-party PCAPNG without this metadata remains supported.
 Existing PCAP inputs and optional JSON sidecars continue to work.
 
+## Generate synthetic test captures
+
+The separate `wifi-capture-synth` executable creates deterministic PCAP/PCAPNG
+fixtures with a supplied password and full or partial EAPOL exchanges. It prints
+a constrained WiFi GPU mask and candidate count. For example:
+
+```sh
+cargo +1.90.0 build --release --locked --bin wifi-capture-synth
+target/release/wifi-capture-synth --output full.pcapng --password ABCDEF12
+```
+
+This suggests `ABCD?H?H?H?H` (65,536 candidates). See
+[synthetic captures](docs/synthetic.md) for partial and negative fixtures,
+Windows commands and the converter/GPU/API/client validation harness.
+
 ## Pipe into WiFi GPU
 
 With both executables on PATH, send the converted hashes directly to WiFi GPU:

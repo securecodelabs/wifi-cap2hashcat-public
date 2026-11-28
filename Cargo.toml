@@ -6,8 +6,10 @@ rust-version = "1.87"
 description = "Offline WPA2-PSK capture converter for Hashcat mode 22000"
 license = "Apache-2.0"
 publish = false
+default-run = "wifi-cap2hashcat"
 
 [dependencies]
+aes-kw = "0.3.1"
 anyhow = "1"
 clap = { version = "4", features = ["derive"] }
 crc32fast = "1"
@@ -17,7 +19,6 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tempfile = "3"
 
-[dev-dependencies]
 hmac = "0.13"
 pbkdf2 = "0.13"
 sha1 = "0.11"
